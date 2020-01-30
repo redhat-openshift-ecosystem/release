@@ -1,0 +1,70 @@
+periodics:
+- agent: kubernetes
+  cron: '@yearly'
+  decorate: true
+  decoration_config:
+    skip_cloning: true
+  extra_refs:
+  - base_ref: master
+    org: redhat-operator-ecosystem
+    repo: playground
+  labels:
+    ci-operator.openshift.io/prowgen-controlled: "true"
+    pj-rehearse.openshift.io/can-be-rehearsed: "true"
+  name: periodic-ci-redhat-operator-ecosystem-playground-master-e2e-periodic
+  spec:
+    containers:
+    - args:
+      - --artifact-dir=$(ARTIFACTS)
+      - --branch=master
+      - --give-pr-author-access-to-namespace=true
+      - --lease-server=http://boskos
+      - --org=redhat-operator-ecosystem
+      - --repo=playground
+      - --resolver-address=http://ci-operator-configresolver-ci.svc.ci.openshift.org
+      - --secret-dir=/usr/local/e2e-periodic-cluster-profile
+      - --sentry-dsn-path=/etc/sentry-dsn/ci-operator
+      - --target=e2e-periodic
+      - --template=/usr/local/e2e-periodic
+      command:
+      - ci-operator
+      env:
+      - name: CLUSTER_TYPE
+        value: aws
+      - name: CONFIG_SPEC
+        valueFrom:
+          configMapKeyRef:
+            key: redhat-operator-ecosystem-playground-master.yaml
+            name: ci-operator-master-configs
+      - name: JOB_NAME_SAFE
+        value: e2e-periodic
+      - name: TEST_COMMAND
+        value: make test-e2e
+      image: ci-operator:latest
+      imagePullPolicy: Always
+      name: ""
+      resources:
+        requests:
+          cpu: 10m
+      volumeMounts:
+      - mountPath: /usr/local/e2e-periodic-cluster-profile
+        name: cluster-profile
+      - mountPath: /usr/local/e2e-periodic
+        name: job-definition
+        subPath: cluster-launch-installer-src.yaml
+      - mountPath: /etc/sentry-dsn
+        name: sentry-dsn
+        readOnly: true
+    serviceAccountName: ci-operator
+    volumes:
+    - name: cluster-profile
+      projected:
+        sources:
+        - secret:
+            name: cluster-secrets-aws
+    - configMap:
+        name: prow-job-cluster-launch-installer-src
+      name: job-definition
+    - name: sentry-dsn
+      secret:
+        secretName: sentry-dsn

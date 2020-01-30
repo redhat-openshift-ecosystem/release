@@ -1,0 +1,175 @@
+presubmits:
+  redhat-operator-ecosystem/release:
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/ci-operator-config
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-ci-operator-config
+    rerun_command: /test ci-operator-config
+    spec:
+      containers:
+      - args:
+        - --config-dir
+        - ./ci-operator/config/
+        command:
+        - ci-operator-checkconfig
+        image: ci-operator-checkconfig:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )ci-operator-config,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/ci-operator-registry
+    decorate: true
+    labels:
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
+    name: pull-ci-redhat-operator-ecosystem-release-master-ci-operator-registry
+    rerun_command: /test ci-operator-registry
+    spec:
+      containers:
+      - args:
+        - --config
+        - ./ci-operator/config/
+        - --registry
+        - ./ci-operator/step-registry/
+        - --validate-only
+        command:
+        - ci-operator-configresolver
+        image: ci-operator-configresolver:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )ci-operator-registry,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/generated-config
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-generated-config
+    rerun_command: /test generated-config
+    spec:
+      containers:
+      - command:
+        - ./../../openshift/release/hack/validate-generated-config.sh
+        image: ci-operator-prowgen:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: ((?m)^/test generated-config,?(\s+|$))
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/ordered-prow-config
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-ordered-prow-config
+    rerun_command: /test ordered-prow-config
+    spec:
+      containers:
+      - command:
+        - ./../../openshift/release/hack/validate-prow-job-ordering.sh
+        image: determinize-prow-jobs:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )ordered-prow-config,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/owners
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-owners
+    rerun_command: /test owners
+    spec:
+      containers:
+      - command:
+        - ./../../openshift/release/hack/validate-owners.sh
+        image: centos:7
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )owners,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/pj-rehearse
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-pj-rehearse
+    optional: true
+    rerun_command: /test pj-rehearse
+    spec:
+      containers:
+      - args:
+        - --candidate-path=.
+        - --debug-log
+        - $(ARTIFACTS)/debug-log.txt
+        - --no-fail=false
+        - --dry-run=false
+        - --metrics-output=$(ARTIFACTS)/rehearse-metrics.json
+        - --rehearsal-limit=35
+        command:
+        - /bin/pj-rehearse
+        image: pj-rehearse:latest
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 500m
+      serviceAccountName: ci-operator
+    trigger: (?m)^/test( | .* )pj-rehearse,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/prow-config-filenames
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-prow-config-filenames
+    rerun_command: /test prow-config-filenames
+    spec:
+      containers:
+      - command:
+        - ./../../openshift/release/hack/validate-ci-operator-config-filename.py
+        image: registry.svc.ci.openshift.org/ci/python-validation
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )prow-config-filenames,?($|\s.*)
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - master
+    context: ci/prow/prow-config-semantics
+    decorate: true
+    name: pull-ci-redhat-operator-ecosystem-release-master-prow-config-semantics
+    rerun_command: /test prow-config-semantics
+    spec:
+      containers:
+      - command:
+        - ./../../openshift/release/hack/validate-prow-job-semantics.py
+        image: registry.svc.ci.openshift.org/ci/python-validation
+        imagePullPolicy: Always
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )prow-config-semantics,?($|\s.*)
