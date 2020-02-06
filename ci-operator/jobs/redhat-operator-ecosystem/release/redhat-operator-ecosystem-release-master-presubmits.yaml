@@ -55,6 +55,10 @@ presubmits:
     - master
     context: ci/prow/generated-config
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-generated-config
     rerun_command: /test generated-config
     spec:
@@ -74,6 +78,10 @@ presubmits:
     - master
     context: ci/prow/ordered-prow-config
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-ordered-prow-config
     rerun_command: /test ordered-prow-config
     spec:
@@ -93,6 +101,10 @@ presubmits:
     - master
     context: ci/prow/owners
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-owners
     rerun_command: /test owners
     spec:
@@ -141,6 +153,10 @@ presubmits:
     - master
     context: ci/prow/prow-config-filenames
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-prow-config-filenames
     rerun_command: /test prow-config-filenames
     spec:
@@ -160,6 +176,10 @@ presubmits:
     - master
     context: ci/prow/prow-config-semantics
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-prow-config-semantics
     rerun_command: /test prow-config-semantics
     spec:
