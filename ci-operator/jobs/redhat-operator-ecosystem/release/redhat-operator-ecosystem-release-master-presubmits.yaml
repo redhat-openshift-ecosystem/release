@@ -30,6 +30,10 @@ presubmits:
     - master
     context: ci/prow/ci-operator-registry
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     labels:
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-redhat-operator-ecosystem-release-master-ci-operator-registry
@@ -42,6 +46,8 @@ presubmits:
         - --registry
         - ./ci-operator/step-registry/
         - --validate-only
+        - --prow-config
+        - ../../openshift/release/core-services/prow/02_config/_config.yaml
         command:
         - ci-operator-configresolver
         image: ci-operator-configresolver:latest
