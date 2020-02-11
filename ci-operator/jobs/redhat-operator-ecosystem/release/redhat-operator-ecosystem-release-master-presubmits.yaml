@@ -63,12 +63,12 @@ presubmits:
     - master
     context: ci/prow/generated-config
     decorate: true
-    labels:
-      pj-rehearse.openshift.io/can-be-rehearsed: "true"
     extra_refs:
     - base_ref: master
       org: openshift
       repo: release
+    labels:
+      pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-redhat-operator-ecosystem-release-master-generated-config
     rerun_command: /test generated-config
     spec:
