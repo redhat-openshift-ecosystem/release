@@ -144,6 +144,10 @@ presubmits:
     - master
     context: ci/prow/pj-rehearse
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-pj-rehearse
     optional: true
     rerun_command: /test pj-rehearse
