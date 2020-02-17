@@ -157,6 +157,9 @@ presubmits:
         - --dry-run=false
         - --metrics-output=$(ARTIFACTS)/rehearse-metrics.json
         - --rehearsal-limit=35
+        - --no-cluster-profiles
+        - --no-templates
+        - --no-registry
         command:
         - ./hack/rehearse.sh
         image: pj-rehearse:latest
