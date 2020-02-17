@@ -158,7 +158,7 @@ presubmits:
         - --metrics-output=$(ARTIFACTS)/rehearse-metrics.json
         - --rehearsal-limit=35
         command:
-        - /bin/pj-rehearse
+        - ./hack/rehearse.sh
         image: pj-rehearse:latest
         imagePullPolicy: Always
         name: ""
