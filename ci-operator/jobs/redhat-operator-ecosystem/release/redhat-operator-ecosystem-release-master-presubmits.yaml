@@ -144,6 +144,10 @@ presubmits:
     - master
     context: ci/prow/pj-rehearse
     decorate: true
+    extra_refs:
+    - base_ref: master
+      org: openshift
+      repo: release
     name: pull-ci-redhat-operator-ecosystem-release-master-pj-rehearse
     optional: true
     rerun_command: /test pj-rehearse
@@ -157,8 +161,11 @@ presubmits:
         - --dry-run=false
         - --metrics-output=$(ARTIFACTS)/rehearse-metrics.json
         - --rehearsal-limit=35
+        - --no-cluster-profiles
+        - --no-templates
+        - --no-registry
         command:
-        - /bin/pj-rehearse
+        - ./hack/rehearse.sh
         image: pj-rehearse:latest
         imagePullPolicy: Always
         name: ""
