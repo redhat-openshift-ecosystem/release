@@ -24,7 +24,6 @@ periodics:
       - --lease-server-username=ci
       - --lease-server=https://boskos-ci.svc.ci.openshift.org
       - --secret-dir=/usr/local/cvp-common-aws-cluster-profile
-      - --sentry-dsn-path=/etc/sentry-dsn/ci-operator
       - --target=cvp-common-aws
       command:
       - ci-operator
@@ -45,9 +44,6 @@ periodics:
         name: cluster-profile
       - mountPath: /etc/pull-secret
         name: pull-secret
-        readOnly: true
-      - mountPath: /etc/sentry-dsn
-        name: sentry-dsn
         readOnly: true
     serviceAccountName: ci-operator
     volumes:
@@ -71,6 +67,3 @@ periodics:
     - name: pull-secret
       secret:
         secretName: regcred
-    - name: sentry-dsn
-      secret:
-        secretName: sentry-dsn
