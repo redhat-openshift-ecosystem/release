@@ -52,6 +52,7 @@ presubmits:
         resources:
           requests:
             cpu: 10m
+    trigger: (?m)^/test( | .* )ci-operator-config-metadata,?($|\s.*)
   - agent: kubernetes
     always_run: true
     branches:
