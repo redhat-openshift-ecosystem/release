@@ -38,7 +38,7 @@ presubmits:
       repo: release
     labels:
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
-    name: pull-ci-openshift-release-master-ci-operator-config-metadata
+    name: pull-ci-redhat-operator-ecosystem-release-master-ci-operator-config-metadata
     rerun_command: /test ci-operator-config-metadata
     spec:
       containers:
