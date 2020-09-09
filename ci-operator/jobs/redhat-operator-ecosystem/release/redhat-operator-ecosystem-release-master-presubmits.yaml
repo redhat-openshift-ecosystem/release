@@ -43,9 +43,9 @@ presubmits:
     spec:
       containers:
       - args:
-        - ./
+        - ./../../
         command:
-        - ./../../hack/validate-ci-operator-config.sh
+        - ls
         image: determinize-ci-operator:latest
         imagePullPolicy: Always
         name: ""
