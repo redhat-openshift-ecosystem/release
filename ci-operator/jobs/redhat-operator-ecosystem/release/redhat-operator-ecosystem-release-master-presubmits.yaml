@@ -196,15 +196,26 @@ presubmits:
         - --no-cluster-profiles
         - --no-templates
         - --no-registry
+        - --prowjob-kubeconfig=/var/kubeconfigs/sa.pj-rehearse.app.ci.config
         command:
         - ./hack/rehearse.sh
+        env:
+        - name: KUBECONFIG
+          value: /var/kubeconfigs/sa.ci-operator.build01.config:/var/kubeconfigs/sa.ci-operator.build02.config:/var/kubeconfigs/sa.pj-rehearse.app.ci.config:/var/kubeconfigs/sa.ci-operator.vsphere.config:/var/kubeconfigs/sa.ci-operator.api.ci.config
         image: pj-rehearse:latest
         imagePullPolicy: Always
         name: ""
         resources:
           requests:
             cpu: 500m
+        volumeMounts:
+        - mountPath: /var/kubeconfigs
+          name: prowjob-kubeconfig
       serviceAccountName: ci-operator
+      volumes:
+      - name: prowjob-kubeconfig
+        secret:
+          secretName: pj-rehearse
     trigger: (?m)^/test( | .* )pj-rehearse,?($|\s.*)
   - agent: kubernetes
     always_run: true
