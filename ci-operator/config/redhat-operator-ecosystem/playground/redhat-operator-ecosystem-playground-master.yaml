@@ -16,11 +16,9 @@ images:
     base:
       as:
       - runtime
-      paths: null
     bin:
       as:
       - builder
-      paths: null
   to: redhat-operator-ecosystem-playground
 promotion:
   namespace: ci
