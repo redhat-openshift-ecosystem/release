@@ -45,7 +45,7 @@ presubmits:
       - args:
         - ./
         command:
-        - ./../../hack/validate-ci-operator-config.sh
+        - ./../../openshift/release/hack/validate-ci-operator-config.sh
         image: determinize-ci-operator:latest
         imagePullPolicy: Always
         name: ""
