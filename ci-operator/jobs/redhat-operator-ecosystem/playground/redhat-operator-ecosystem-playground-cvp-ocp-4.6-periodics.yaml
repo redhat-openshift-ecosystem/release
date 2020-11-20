@@ -6,13 +6,13 @@ periodics:
   decoration_config:
     skip_cloning: true
   extra_refs:
-  - base_ref: cvp-ocp-4.5
+  - base_ref: cvp-ocp-4.6
     org: redhat-operator-ecosystem
     repo: playground
   labels:
     ci-operator.openshift.io/prowgen-controlled: "true"
     pj-rehearse.openshift.io/can-be-rehearsed: "true"
-  name: periodic-ci-redhat-operator-ecosystem-playground-cvp-ocp-4.5-cvp-common-aws
+  name: periodic-ci-redhat-operator-ecosystem-playground-cvp-ocp-4.6-cvp-common-aws
   spec:
     containers:
     - args:

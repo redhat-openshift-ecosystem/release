@@ -1,8 +1,11 @@
 releases:
   latest:
-    release:
-      channel: stable
-      version: "4.5"
+    candidate:
+      architecture: amd64
+      product: ocp
+      relative: 1
+      stream: nightly
+      version: "4.7"
 resources:
   '*':
     limits:
@@ -17,6 +20,6 @@ tests:
     cluster_profile: aws
     workflow: optional-operators-cvp-common-aws
 zz_generated_metadata:
-  branch: cvp-ocp-4.5
+  branch: cvp-ocp-4.7
   org: redhat-operator-ecosystem
   repo: playground
