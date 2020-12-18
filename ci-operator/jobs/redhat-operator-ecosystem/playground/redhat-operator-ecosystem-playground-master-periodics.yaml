@@ -23,16 +23,8 @@ periodics:
       - --report-username=ci
       - --secret-dir=/usr/local/e2e-periodic-cluster-profile
       - --target=e2e-periodic
-      - --template=/usr/local/e2e-periodic
       command:
       - ci-operator
-      env:
-      - name: CLUSTER_TYPE
-        value: aws
-      - name: JOB_NAME_SAFE
-        value: e2e-periodic
-      - name: TEST_COMMAND
-        value: make test-e2e
       image: ci-operator:latest
       imagePullPolicy: Always
       name: ""
@@ -48,9 +40,6 @@ periodics:
       - mountPath: /secrets/gcs
         name: gcs-credentials
         readOnly: true
-      - mountPath: /usr/local/e2e-periodic
-        name: job-definition
-        subPath: cluster-launch-installer-src.yaml
       - mountPath: /etc/pull-secret
         name: pull-secret
         readOnly: true
@@ -70,9 +59,6 @@ periodics:
         sources:
         - secret:
             name: cluster-secrets-aws
-    - configMap:
-        name: prow-job-cluster-launch-installer-src
-      name: job-definition
     - name: pull-secret
       secret:
         secretName: registry-pull-credentials
