@@ -47,6 +47,9 @@ periodics:
         name: result-aggregator
         readOnly: true
     serviceAccountName: ci-operator
+    env:
+    - name: BASE_DOMAIN
+      value: cpaas-ci.devcluster.openshift.com
     volumes:
     - name: boskos
       secret:
@@ -65,3 +68,6 @@ periodics:
     - name: result-aggregator
       secret:
         secretName: result-aggregator
+    - name: cluster-secrets-aws-cpaas
+      secret:
+        secretName: cluster-secrets-aws-cpaas
