@@ -11,10 +11,11 @@ resources:
       cpu: 100m
       memory: 200Mi
 tests:
-- as: cvp-common-aws
+- artifact_dir: /tmp/artifacts
+  as: cvp-common-aws
   cron: '@yearly'
   steps:
-    cluster_profile: aws
+    cluster_profile: aws-cpaas
     workflow: optional-operators-cvp-common-aws
 zz_generated_metadata:
   branch: cvp-ocp-4.4
