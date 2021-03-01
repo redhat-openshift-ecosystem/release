@@ -14,8 +14,7 @@ resources:
       cpu: 100m
       memory: 200Mi
 tests:
-- artifact_dir: /tmp/artifacts
-  as: cvp-common-aws
+- as: cvp-common-aws
   cron: '@yearly'
   steps:
     cluster_profile: aws-cpaas

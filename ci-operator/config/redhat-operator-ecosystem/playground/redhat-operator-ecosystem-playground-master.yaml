@@ -34,18 +34,15 @@ tag_specification:
   name: "4.7"
   namespace: ocp
 tests:
-- artifact_dir: /tmp/artifacts
-  as: unit
+- as: unit
   commands: make test-unit
   container:
     from: src
-- artifact_dir: /tmp/artifacts
-  as: perf
+- as: perf
   commands: make test-perf
   container:
     from: src
-- artifact_dir: /tmp/artifacts
-  as: e2e
+- as: e2e
   steps:
     cluster_profile: aws
     test:
@@ -57,8 +54,7 @@ tests:
         requests:
           cpu: 100m
     workflow: ipi-aws
-- artifact_dir: /tmp/artifacts
-  as: e2e-periodic
+- as: e2e-periodic
   cron: '@yearly'
   steps:
     cluster_profile: aws
