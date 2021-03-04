@@ -23,3 +23,8 @@ zz_generated_metadata:
   branch: cvp-ocp-4.7
   org: redhat-operator-ecosystem
   repo: playground
+base_images:
+  cvp-operator-scorecard:
+    name: cvp-operator-scorecard
+    namespace: ci
+    tag: v1
