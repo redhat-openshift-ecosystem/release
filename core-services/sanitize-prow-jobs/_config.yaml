@@ -1,2 +1,1 @@
-default: api.ci
-nonKubernetes: api.ci
+default: build01
