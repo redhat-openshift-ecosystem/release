@@ -239,7 +239,7 @@ presubmits:
         - ./ci-operator/config
         command:
         - ./../../openshift/release/hack/validate-ci-operator-config-filename.py
-        image: registry.svc.ci.openshift.org/ci/python-validation
+        image: registry.ci.openshift.org/ci/python-validation
         imagePullPolicy: Always
         name: ""
         resources:
@@ -267,7 +267,7 @@ presubmits:
         - ./
         command:
         - ./../../openshift/release/hack/validate-prow-job-semantics.py
-        image: registry.svc.ci.openshift.org/ci/python-validation
+        image: registry.ci.openshift.org/ci/python-validation
         imagePullPolicy: Always
         name: ""
         resources:
