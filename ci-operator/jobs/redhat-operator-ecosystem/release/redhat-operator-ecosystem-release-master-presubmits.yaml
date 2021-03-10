@@ -4,7 +4,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/ci-operator-config
     decorate: true
     labels:
@@ -29,7 +29,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/ci-operator-config-metadata
     decorate: true
     extra_refs:
@@ -57,7 +57,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/ci-operator-registry
     decorate: true
     extra_refs:
@@ -91,7 +91,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/generated-config
     decorate: true
     extra_refs:
@@ -119,7 +119,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/ordered-prow-config
     decorate: true
     extra_refs:
@@ -147,7 +147,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/owners
     decorate: true
     extra_refs:
@@ -175,7 +175,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/pj-rehearse
     decorate: true
     extra_refs:
@@ -221,7 +221,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/prow-config-filenames
     decorate: true
     extra_refs:
@@ -250,7 +250,7 @@ presubmits:
     always_run: true
     branches:
     - master
-    cluster: api.ci
+    cluster: build01
     context: ci/prow/prow-config-semantics
     decorate: true
     extra_refs:
