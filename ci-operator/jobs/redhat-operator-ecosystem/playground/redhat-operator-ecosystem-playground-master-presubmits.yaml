@@ -11,7 +11,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/prowgen-controlled: "true"
+      ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-redhat-operator-ecosystem-playground-master-e2e
     rerun_command: /test e2e
@@ -41,6 +41,9 @@ presubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
+        - mountPath: /configmaps/github-ldap-mapping
+          name: github-ldap-mapping
+          readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
@@ -60,6 +63,9 @@ presubmits:
           sources:
           - secret:
               name: cluster-secrets-aws
+      - configMap:
+          name: github-ldap-mapping
+        name: github-ldap-mapping
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
@@ -78,7 +84,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/prowgen-controlled: "true"
+      ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-redhat-operator-ecosystem-playground-master-images
     rerun_command: /test images
@@ -101,6 +107,9 @@ presubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
+        - mountPath: /configmaps/github-ldap-mapping
+          name: github-ldap-mapping
+          readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
@@ -109,6 +118,9 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - configMap:
+          name: github-ldap-mapping
+        name: github-ldap-mapping
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
@@ -127,7 +139,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/prowgen-controlled: "true"
+      ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-redhat-operator-ecosystem-playground-master-perf
     rerun_command: /test perf
@@ -150,6 +162,9 @@ presubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
+        - mountPath: /configmaps/github-ldap-mapping
+          name: github-ldap-mapping
+          readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
@@ -158,6 +173,9 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - configMap:
+          name: github-ldap-mapping
+        name: github-ldap-mapping
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
@@ -176,7 +194,7 @@ presubmits:
     decoration_config:
       skip_cloning: true
     labels:
-      ci-operator.openshift.io/prowgen-controlled: "true"
+      ci.openshift.io/generator: prowgen
       pj-rehearse.openshift.io/can-be-rehearsed: "true"
     name: pull-ci-redhat-operator-ecosystem-playground-master-unit
     rerun_command: /test unit
@@ -199,6 +217,9 @@ presubmits:
         - mountPath: /secrets/gcs
           name: gcs-credentials
           readOnly: true
+        - mountPath: /configmaps/github-ldap-mapping
+          name: github-ldap-mapping
+          readOnly: true
         - mountPath: /etc/pull-secret
           name: pull-secret
           readOnly: true
@@ -207,6 +228,9 @@ presubmits:
           readOnly: true
       serviceAccountName: ci-operator
       volumes:
+      - configMap:
+          name: github-ldap-mapping
+        name: github-ldap-mapping
       - name: pull-secret
         secret:
           secretName: registry-pull-credentials
